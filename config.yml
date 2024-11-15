@@ -1,0 +1,124 @@
+# config.yml
+
+# Base URL for accessing the sitemap, if needed
+sitemap_url: https://ghost.org/sitemap-pages.xml
+
+# Waiting period in seconds for page loads (if needed)
+load_wait: 0.5
+
+# ghost explore topics to ignore
+ignore:
+  - about
+  - featured
+  - revenue
+  - trending
+  - new
+  - alphabetical
+  - updated
+  - members
+
+category_mapping:
+  health: Health & Wellness
+  faith: Faith & Spirtuality
+  sport: Sport & Fitness
+  nature: Nature & Outdoors
+  food: Food & Drink
+  house: House & Home
+  fashion: Fashion & Beauty
+  gear: Gear & Gadgets
+
+
+# Schema for mapping and ordering data fields
+schema:
+  - name: Title
+    id: title
+    description: Website title
+
+  - name: URL
+    id: site_url
+    description: Primary website address
+
+  - name: Description
+    id: description
+    description: About the website
+
+  - name: Publication Icon
+    id: publication_icon
+    description: Icon representing the publication
+
+  - name: Not Safe For Work
+    id: nsfw
+    description: Is the website work appropriate?
+
+  - name: Categories
+    id: categories
+    description: Topics covered
+
+  - name: Member Count
+    id: member_count
+    description: Number of members
+
+  - name: Show Member Count
+    id: show_member_count
+    description: Flag to show member count
+
+  - name: Monthly Recurring Revenue (MRR)
+    id: mrr
+    description: Monthly recurring revenue
+
+  - name: Show MRR
+    id: show_mrr
+    description: Flag to show monthly recurring revenue
+
+  - name: Ghost Rank
+    id: ghost_rank
+    description: Rank of the site within Ghost
+
+  - name: Featured
+    id: featured
+    description: Whether the site is featured
+
+  - name: Feature Image
+    id: feature_image
+    description: Main image representing the content
+
+  - name: Text Color
+    id: text_color
+    description: Text color used in the site design
+
+  - name: Background Color
+    id: bg_color
+    description: Background color used in the site design
+
+  - name: Accent Color
+    id: accent_color
+    description: Accent color used in the site
+
+  - name: Language
+    id: lang
+    description: Language of the content
+
+  - name: MRR Members Rank
+    id: mrr_members_rank
+    description: Rank of members based on MRR
+
+  - name: MRR Members Diff Rank
+    id: mrr_members_diff_rank
+    description: Difference in MRR members ranking
+
+  - name: Show Iframe
+    id: showIframe
+    description: Whether to show content in an iframe
+
+  - name: Object ID
+    id: objectID
+    description: Unique object identifier
+
+  - name: Created At
+    id: created_at
+    description: Site creation date
+
+  - name: Updated At
+    id: updated_at
+    description: Date of last update
+

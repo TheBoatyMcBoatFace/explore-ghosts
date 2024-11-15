@@ -1,0 +1,22 @@
+# pyproject.toml
+[tool.poetry]
+name = "ghost-explore-crawler"
+version = "0.1.0"
+description = "Crawl Ghost Explore and get Ghost Sites"
+authors = ["Bentley Hensel <bentleyhensel@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
+pyyaml = "^6.0.1"
+bs4 = "^0.0.1"
+pyppeteer = "^1.0.2"
+aiohttp = "^3.8.6"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
