@@ -24,6 +24,12 @@ jobs:
       - name: Checkout Local Repo
         uses: actions/checkout@v4
 
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+          install-dependencies: true
+
       - name: Install poetry
         run: pipx install poetry
 
@@ -37,6 +43,7 @@ jobs:
 
       - name: Run Ghost Explorer
         run: |
+          export PYPPETEER_SKIP_DOWNLOAD="true"
           poetry run python run.py
         env:
           SUPER_SECRET_URL: ${{ secrets.SUPER_SECRET_URL }}

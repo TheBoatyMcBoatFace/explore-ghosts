@@ -7,12 +7,26 @@ async def init_web_driver():
     """Initialize and return the browser and page instance."""
     try:
         logger.info("🚗 Initializing WebDriver...")
-        browser = await launch(headless=True)
+
+        # This path is provided by the GitHub Action that installs Chrome
+        chrome_path = '/usr/bin/google-chrome'
+
+        browser = await launch(
+            headless=True,
+            executablePath=chrome_path,  # Use system-installed Chrome
+            args=[
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu',
+            ]
+        )
         page = await browser.newPage()
         logger.info("✅ WebDriver initialized successfully.")
         return browser, page
+
     except Exception as e:
-        logger.error("❌ Failed to initialize WebDriver: %s", str(e))
+        logger.error(f"❌ Failed to initialize WebDriver: {str(e)}")
         return None, None
 
 async def scroll_and_scrape(config, total_items):
