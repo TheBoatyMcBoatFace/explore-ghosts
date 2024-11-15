@@ -7,20 +7,8 @@ async def init_web_driver():
     """Initialize and return the browser and page instance."""
     try:
         logger.info("🚗 Initializing WebDriver...")
+        browser = await launch(headless=True)
 
-        # This path is provided by the GitHub Action that installs Chrome
-        chrome_path = '/usr/bin/google-chrome'
-
-        browser = await launch(
-            headless=True,
-            executablePath=chrome_path,  # Use system-installed Chrome
-            args=[
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-gpu',
-            ]
-        )
         page = await browser.newPage()
         logger.info("✅ WebDriver initialized successfully.")
         return browser, page
