@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths:
-      - "explorer"
+      - "explorer/**"
       - config.yml
 
 env:
