@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout Local Repo
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Convert Repo Name to Lowercase
         id: set-lowercase-repo-name
