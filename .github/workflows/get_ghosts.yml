@@ -20,11 +20,6 @@ jobs:
     outputs:
       data-changed: ${{ steps.verify-changed-files.outputs.files_changed }}
     steps:
-      - name: Checkout Local Repo
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
       - name: Convert Repo Name to Lowercase
         id: set-lowercase-repo-name
         run: echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
@@ -32,6 +27,11 @@ jobs:
       - name: Pull Docker Image
         run: |
           docker pull ghcr.io/${{ env.REPO_NAME }}:latest
+
+      - name: Checkout Local Repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Debug - List Output Files
         run: ls -R output/
