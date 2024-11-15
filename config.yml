@@ -16,16 +16,7 @@ ignore:
   - alphabetical
   - updated
   - members
-  - art
-  - culture
-  - technology
-  - politics
-  - business
-  - education
-  - finance
-  - news
-  - productivity
-  - developers
+
 
 category_mapping:
   health: Health & Wellness
