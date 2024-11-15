@@ -20,8 +20,6 @@ RUN pip install pipx && pipx install poetry
 # Set Python binaries in path
 ENV PATH="/root/.local/bin:$PATH"
 
-# Set working directory
-WORKDIR /app
 
 # Copy your code into the Docker image
 COPY . .
