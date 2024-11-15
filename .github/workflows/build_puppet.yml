@@ -10,8 +10,11 @@ on:
       - main
     paths:
       - "explorer/**"
-      - config.yml
-      - .github/workflows/build_puppet.yml
+      - "config.yml"
+      - ".github/workflows/build_puppet.yml"
+      - "!*.csv"
+      - "!*.md"
+      - "!output/**"
 
 env:
   GHCR_REGISTRY: ghcr.io

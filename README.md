@@ -7,13 +7,8 @@ A project designed to pull down all of the sites listed on Ghost's Explore platf
 
 ## [VIEW THE DATA](output)
 
-**To view Ghost Explore, head over to [ghost.org](https://ghost.org/explore?utm_source=TheBoatyMcBoatFace/explore-ghosts&utm_medium=github).
+**To view Ghost Explore, head over to [ghost.org](https://ghost.org/explore?utm_source=TheBoatyMcBoatFace/explore-ghosts&utm_medium=github).**
 
-### Project Goals:
-1. **Nightly Scraping**: Scrapes all the sites featured on Ghost Explore and saves the results in various formats (CSV, JSON, YAML, and more).
-2. **Tracking & Trend Analysis**: Enables future features for tracking Ghost website rankings as they increase or decrease over time.
-3. **Storage Solutions**: Potential integrations with external databases for long-term storage (e.g., Clickhouse or DoltHub) to maintain a large history of websites and metric data.
-4. **Open Source Contribution**: Encourages the open-source community to enhance the scraping process, post-processing, and ultimately enable powerful analytics.
 
 
 ## Getting Started
@@ -105,21 +100,15 @@ Here's a brief overview of the project's file structure:
 ## Upcoming Features / TODO:
 
 - **Output Types**: We still need to fully enable multiple file format outputs (YAML, JSON, SQLite).
-- **GitHub Actions**: Automate the running of this scraper to run nightly as a scheduled task on GitHub Actions (Cron Jobs). The generated output should be committed back to the same repository.
+- ✅ ~**GitHub Actions**: Automate the running of this scraper to run nightly as a scheduled task on GitHub Actions (Cron Jobs). The generated output should be committed back to the same repository.~
 - **Data Analysis & Visualization**: Add scripts to analyze trends over time (e.g., site growth) and create Markdown reports that get committed back to the repo.
 - **Database Integration**: Explore potential integration with external databases (e.g., **Clickhouse**) or cloud storage providers like DoltHub to store history.
-
 
 
 ## License
 
 This project is licensed under the AGPL-3.0 License, like everything else I do. You can learn about the AGPL license [here](https://www.gnu.org/licenses/agpl-3.0.en.html).
 
-```text
-Explore Ghosts is freely available for anyone to use and modify. However, if you make improvements or alterations, you're encouraged to contribute them back to the community to help foster collaborative growth.
-```
-
----
 
 ## Contributing
 
