@@ -7,6 +7,7 @@ import json
 import re
 import sys
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 import threading
 import queue
 
@@ -83,15 +84,15 @@ def configure_logger():
     log_files = os.environ.get("LOG_FILES", "False").lower() == "true"
     LOG_FILE_TYPE = os.environ.get("LOG_FILE_TYPE", "text").lower()
     LOG_PATH = os.environ.get("LOG_PATH", "logs")
-    LOG_TIMEZONE = os.environ.get("LOG_TIMEZONE", "UTC")
-    tz = timezone.utc  # Default to UTC
+    LOG_TIMEZONE = os.environ.get("LOG_TIMEZONE", "America/New_York")
 
     # Set up timezone
-    if LOG_TIMEZONE.upper() == "UTC":
+    try:
+        tz = ZoneInfo(LOG_TIMEZONE)
+    except ZoneInfoNotFoundError:
+        print(f"Timezone '{LOG_TIMEZONE}' not found. Defaulting to UTC.")
         tz = timezone.utc
-    else:
-        # Implement other timezones if necessary
-        pass  # For simplicity, defaulting to UTC
+
 
     # Clear existing handlers to prevent duplication
     logger.handlers = []

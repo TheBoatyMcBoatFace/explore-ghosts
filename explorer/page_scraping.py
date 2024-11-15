@@ -1,13 +1,43 @@
 # explorer/page_scraping.py
 import asyncio
+import os
 from pyppeteer import launch
-from .utils import logger, remap_data
+from .utils import logger
 
 async def init_web_driver():
-    """Initialize and return the browser and page instance."""
+    """Initialize the browser and return the page instance."""
     try:
         logger.info("🚗 Initializing WebDriver...")
-        browser = await launch(headless=True)
+
+        # Check if Chromium downloading should be skipped (Docker environment)
+        skip_download = os.getenv('PUPPETEER_SKIP_DOWNLOAD', 'false').lower() == 'true'
+
+        if skip_download:
+            # In Docker: Use system-installed Chromium
+            chromium_path = '/usr/bin/chromium'
+
+            logger.info(f"Using system-installed Chromium at: {chromium_path}")
+            browser = await launch(
+                headless=True,
+                executablePath=chromium_path,
+                args=[
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-gpu',
+                    '--disable-software-rasterizer'
+                ]
+            )
+        else:
+            # Locally: Allow Pyppeteer to handle Chromium automatically.
+            logger.info("Using Pyppeteer's default Chromium.")
+            browser = await launch(
+                headless=True,
+                args=[
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                ]
+            )
 
         page = await browser.newPage()
         logger.info("✅ WebDriver initialized successfully.")

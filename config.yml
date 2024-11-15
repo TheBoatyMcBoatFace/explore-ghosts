@@ -16,10 +16,20 @@ ignore:
   - alphabetical
   - updated
   - members
+  - art
+  - culture
+  - technology
+  - politics
+  - business
+  - education
+  - finance
+  - news
+  - productivity
+  - developers
 
 category_mapping:
   health: Health & Wellness
-  faith: Faith & Spirtuality
+  faith: Faith & Spirituality
   sport: Sport & Fitness
   nature: Nature & Outdoors
   food: Food & Drink

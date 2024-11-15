@@ -13,7 +13,6 @@ on:
 env:
   LOG_TIMEZONE: EST
 
-
 jobs:
   setup-and-run-bot:
     name: Setup and Run Ghost Explorer
@@ -24,32 +23,18 @@ jobs:
       - name: Checkout Local Repo
         uses: actions/checkout@v4
 
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-          install-dependencies: true
-
-      - name: Install poetry
-        run: pipx install poetry
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: "poetry"
-
-      - run: poetry install
-
-      - name: Run Ghost Explorer
+      - name: Pull Docker Image
         run: |
-          export PYPPETEER_SKIP_DOWNLOAD="true"
-          poetry run python run.py
-        env:
-          SUPER_SECRET_URL: ${{ secrets.SUPER_SECRET_URL }}
-          SUPER_SECRET_PARAMS_1: ${{ secrets.SUPER_SECRET_PARAMS_1 }}
-          SUPER_SECRET_PARAMS_2: ${{ secrets.SUPER_SECRET_PARAMS_2 }}
-          SUPER_SECRET_PARAMS_3: ${{ secrets.SUPER_SECRET_PARAMS_3 }}
+          docker pull ghcr.io/${{ github.repository }}:latest
+
+      # Run the Python app inside the prebuilt Docker container
+      - name: Run Ghost Explorer in Docker
+        run: |
+          docker run --env SUPER_SECRET_URL="${{ secrets.SUPER_SECRET_URL }}" \
+                     --env SUPER_SECRET_PARAMS_1="${{ secrets.SUPER_SECRET_PARAMS_1 }}" \
+                     --env SUPER_SECRET_PARAMS_2="${{ secrets.SUPER_SECRET_PARAMS_2 }}" \
+                     --env SUPER_SECRET_PARAMS_3="${{ secrets.SUPER_SECRET_PARAMS_3 }}" \
+                     ghcr.io/${{ github.repository }}:latest
 
       - name: Verify Changed files
         id: verify-changed-files
