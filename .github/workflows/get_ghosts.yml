@@ -20,6 +20,7 @@ jobs:
     outputs:
       data-changed: ${{ steps.verify-changed-files.outputs.files_changed }}
     steps:
+
       - name: Convert Repo Name to Lowercase
         id: set-lowercase-repo-name
         run: echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
@@ -43,10 +44,17 @@ jobs:
                      --env SUPER_SECRET_PARAMS_1="${{ secrets.SUPER_SECRET_PARAMS_1 }}" \
                      --env SUPER_SECRET_PARAMS_2="${{ secrets.SUPER_SECRET_PARAMS_2 }}" \
                      --env SUPER_SECRET_PARAMS_3="${{ secrets.SUPER_SECRET_PARAMS_3 }}" \
+                     -v ${{ github.workspace }}/output:/output \
                      ghcr.io/${{ env.REPO_NAME }}:latest
 
       - name: Debug - List Output Files
         run: ls -R output/
+
+      - name: Check Git Status
+        run: git status
+
+      - name: Adjust Output File Permissions
+        run: chmod -R 755 output/
 
       - name: Stage Output Files for Commit
         run: |
@@ -59,7 +67,6 @@ jobs:
         with:
           commit_message: Updated Ghost Explore Sites
           branch: main
-          disable_globbing: true
         env:
           GIT_USER_NAME: ${{ secrets.USER_NAME }}
           GIT_USER_EMAIL: ${{ secrets.USER_EMAIL }}
