@@ -53,14 +53,13 @@ jobs:
       - name: Check Git Status
         run: git status
 
-      - name: Adjust Output File Permissions
-        run: chmod -R 755 output/
-
       - name: Stage Output Files for Commit
         run: |
           git config --global user.name "${{ secrets.USER_NAME }}"
           git config --global user.email "${{ secrets.USER_EMAIL }}"
           git add output/*.csv
+          git status
+
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
