@@ -24,23 +24,19 @@ jobs:
       - name: Checkout Local Repo
         uses: actions/checkout@v4
 
+      - name: Install poetry
+        run: pipx install poetry
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "poetry"
 
-      - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org | python -
-
-
-      # Added step to update the poetry.lock file without updating dependencies
-      - name: Update Poetry Lock File
-        run: poetry lock --no-update
-
+      - run: poetry install
 
       - name: Run Ghost Explorer
         run: |
-          poetry install
           poetry run python run.py
         env:
           SUPER_SECRET_URL: ${{ secrets.SUPER_SECRET_URL }}

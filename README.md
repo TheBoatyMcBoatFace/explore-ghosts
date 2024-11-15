@@ -1,5 +1,7 @@
 # Explore Ghosts: Ghost Explore Site Scraper
 
+[![Run Ghost Explorer](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/get_ghosts.yml/badge.svg)](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/get_ghosts.yml)
+
 A project designed to pull down all of the sites listed on Ghost's Explore platform and save them in various formats (csv, json, yaml, sqlite, etc.). This project is designed to help track Ghost websites and potentially monitor trends over time, making it ideal for anyone looking to analyze Ghost websites or track growth and movement.
 
 **To view Ghost Explore, head over to [ghost.org](https://ghost.org/explore?utm_source=TheBoatyMcBoatFace/explore-ghosts&utm_medium=github).
