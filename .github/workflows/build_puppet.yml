@@ -1,4 +1,4 @@
-name: Build and Push Puppeteer Python Docker Image
+name: Bob Yeets Whale
 on:
   schedule:
     - cron: '0 2 * * 0'
