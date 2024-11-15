@@ -4,6 +4,13 @@ import asyncio
 import os
 from .logging import logger
 
+def clean_field(value):
+    """Helper function to sanitize text fields by removing line breaks and excessive whitespace."""
+    if isinstance(value, str):
+        # Remove any newlines and join the text into a single line without excessive spaces
+        return ' '.join(value.split())
+    return value
+
 async def write_to_csv(data, schema, category):
     """Writes data to a CSV file, including additional fields not in the schema."""
     if data is None:
@@ -42,11 +49,11 @@ async def write_to_csv(data, schema, category):
 
             # Write rows of data
             for item in data:
-                # Remap item fields based on schema, adding any additional fields
-                row = {field['name']: item.get(field['id']) for field in schema}
+                # Clean and remap item fields based on schema, adding any additional fields
+                row = {field['name']: clean_field(item.get(field['id'])) for field in schema}
 
-                # Add additional fields to the row without duplicating schema fields
-                additional_data = {key: item.get(key) for key in additional_fieldnames if key not in schema_ids}
+                # Add additional fields to the row without duplicating schema fields, with cleaned data
+                additional_data = {key: clean_field(item.get(key)) for key in additional_fieldnames if key not in schema_ids}
                 row.update(additional_data)
 
                 writer.writerow(row)
