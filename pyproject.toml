@@ -5,6 +5,7 @@ version = "0.1.0"
 description = "Crawl Ghost Explore and get Ghost Sites"
 authors = ["Bentley Hensel <bentleyhensel@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
