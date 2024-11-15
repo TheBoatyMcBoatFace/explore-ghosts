@@ -1,0 +1,70 @@
+name: Run Ghost Explorer
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+
+# Default public env vars
+env:
+  LOG_TIMEZONE: EST
+
+
+jobs:
+  setup-and-run-bot:
+    name: Setup and Run Ghost Explorer
+    runs-on: ubuntu-latest
+    outputs:
+      data-changed: ${{ steps.verify-changed-files.outputs.files_changed }}
+    steps:
+      - name: Checkout Local Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python -
+
+
+      # Added step to update the poetry.lock file without updating dependencies
+      - name: Update Poetry Lock File
+        run: poetry lock --no-update
+
+
+      - name: Run Ghost Explorer
+        run: |
+          poetry install
+          poetry run python run.py
+        env:
+          SUPER_SECRET_URL: ${{ secrets.SUPER_SECRET_URL }}
+          SUPER_SECRET_PARAMS_1: ${{ secrets.SUPER_SECRET_PARAMS_1 }}
+          SUPER_SECRET_PARAMS_2: ${{ secrets.SUPER_SECRET_PARAMS_2 }}
+          SUPER_SECRET_PARAMS_3: ${{ secrets.SUPER_SECRET_PARAMS_3 }}
+
+      - name: Verify Changed files
+        id: verify-changed-files
+        uses: tj-actions/verify-changed-files@v20
+        with:
+          files: |
+            output/**
+
+      - name: Commit and Push Changes
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Updated Ghost Explore Sites
+          branch: main
+          file_pattern: |
+            output/**
+        env:
+          GIT_USER_NAME: ${{ secrets.USER_NAME }}
+          GIT_USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
