@@ -46,6 +46,8 @@ jobs:
         with:
           files: |
             output/**
+            output
+            *.csv
 
       - name: Commit and Push Changes
         if: steps.verify-changed-files.outputs.files_changed == 'true'
@@ -53,8 +55,6 @@ jobs:
         with:
           commit_message: Updated Ghost Explore Sites
           branch: main
-          file_pattern: |
-            output/**
         env:
           GIT_USER_NAME: ${{ secrets.USER_NAME }}
           GIT_USER_EMAIL: ${{ secrets.USER_EMAIL }}
