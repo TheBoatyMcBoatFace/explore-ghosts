@@ -1,6 +1,6 @@
 # Explore Ghosts: Ghost Explore Site Scraper
 
-[![Run Ghost Explorer](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/get_ghosts.yml/badge.svg)](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/get_ghosts.yml)[![Bob Yeets Whale (Docker Image)](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/build_puppet.yml/badge.svg)](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/build_puppet.yml)
+[![Run Ghost Explorer](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/get_ghosts.yml/badge.svg)](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/get_ghosts.yml)   [![Bob Yeets Whale (Docker Image)](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/build_puppet.yml/badge.svg)](https://github.com/TheBoatyMcBoatFace/explore-ghosts/actions/workflows/build_puppet.yml)
 
 A project designed to pull down all of the sites listed on Ghost's Explore platform and save them in various formats (csv, json, yaml, sqlite, etc.). This project is designed to help track Ghost websites and potentially monitor trends over time, making it ideal for anyone looking to analyze Ghost websites or track growth and movement.
 
