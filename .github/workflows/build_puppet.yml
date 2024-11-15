@@ -11,6 +11,7 @@ on:
     paths:
       - "explorer/**"
       - config.yml
+      - .github/workflows/build_puppet.yml
 
 env:
   GHCR_REGISTRY: ghcr.io
