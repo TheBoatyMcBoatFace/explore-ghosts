@@ -33,6 +33,9 @@ jobs:
         run: |
           docker pull ghcr.io/${{ env.REPO_NAME }}:latest
 
+      - name: Debug - List Output Files
+        run: ls -R output/
+
       # Run the Python app inside the prebuilt Docker container
       - name: Run Ghost Explorer in Docker
         run: |
@@ -42,11 +45,17 @@ jobs:
                      --env SUPER_SECRET_PARAMS_3="${{ secrets.SUPER_SECRET_PARAMS_3 }}" \
                      ghcr.io/${{ env.REPO_NAME }}:latest
 
+      - name: Debug - List Output Files
+        run: ls -R output/
+
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Updated Ghost Explore Sites
           branch: main
+          file_pattern: output/*.csv
+          disable_globbing: true
+          skip_dirty_check: true
         env:
           GIT_USER_NAME: ${{ secrets.USER_NAME }}
           GIT_USER_EMAIL: ${{ secrets.USER_EMAIL }}
